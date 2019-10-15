@@ -42,11 +42,6 @@ imshow(imabsdiff(img_16, img2_16),[]);
 figure();
 imshow(immultiply(img_16, img2_16),[]);
 figure();
-imshow(immultiply(img, 0.5));
-figure();
-maska = boolean(imread("kolo.bmp"));
-imshow(immultiply(img, maska));
+imshow(immultiply(img_16, img2_16),[]);
 %%
 %%negatyw
-figure();
-imshow(imcomplement(img));

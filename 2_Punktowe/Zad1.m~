@@ -16,15 +16,8 @@ img2 = intlut(img, kwadratowa);
 imshow(img2);
 
 %%
-
+LUT(
 LUT(img, kwadratowa);
-LUT(img, log);
-LUT(img, odwlog);
-LUT(img, odwrotna);
-LUT(img, pierwiastkowa);
-LUT(img, pila);
-LUT(img, wykladnicza);
-
 
 function LUT(obraz, przekodowanie)
    figure();
