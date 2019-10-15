@@ -2,21 +2,30 @@ clearvars;
 close all;
 clc;
 
-I = imread("./chessboard.bmp");
-xReScale = 100;
-yReScale = 100;
+I = imread("./parrot.bmp");
+xReScale = 2.1;
+yReScale = 2.1;
 
 [YY,XX] = size(I);
-nYY = floor((YY-1) * yReScale);
-nXX = floor((XX-1) * xReScale);
+nYY = round(YY * yReScale);
+nXX = round(XX * xReScale);
+
+xStep = XX/nXX;
+yStep = YY/nYY;
 
 nI = uint8(zeros(nYY, nXX));
 
-for y = 1 : nYY + 1
-   for x = 1 : nXX + 1
-       oy = round((y-1)/yReScale)+1;
-       ox = round((x-1)/xReScale)+1;
-       nI(y, x) = I(oy, ox);
+for jj = 0 : nYY-1
+   for ii = 0 : nXX-1
+        j = round(jj * yStep);
+        i = round(ii * xStep);
+        if i > XX - 1
+            i = XX -1;
+        end
+        if j > YY - 1
+            j = YY -1;
+        end
+        nI(jj+1, ii+1) = I(j+1, i+1);
    end
 end
 
