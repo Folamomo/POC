@@ -2,7 +2,7 @@ clearvars;
 close all;
 clc;
 
-I = imread("./parrot.bmp");
+I = imread("./chessboard.bmp");
 xReScale = 2.1;
 yReScale = 2.1;
 

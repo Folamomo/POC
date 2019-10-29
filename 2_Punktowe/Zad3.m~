@@ -1,9 +1,0 @@
-clearvars;
-close all;
-clc;
-
-kolo = boolean(imread("kolo.bmp"));
-jet = boolean(imread("jet.bmp"));
-
-figure();
-imshow(~kolo),[]);

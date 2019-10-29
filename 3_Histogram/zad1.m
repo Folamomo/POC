@@ -66,7 +66,7 @@ figure();
 S = cumsum(H);
 S = S*(max(H)/max(S));
 subplot(1, 2, 1);
-imshow(hist2_lut);
+imshow(hist2_adj);
 subplot(1, 2, 2);
 plot(x, H, x, S);
 %%

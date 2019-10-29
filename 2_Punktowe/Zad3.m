@@ -9,8 +9,9 @@ figure();
 title('not');
 imshow(~kolo,[]);
 figure();
-imshow(kolo&lena,[]);
 title('and');
+imshow(kolo&lena,[]);
+
 figure();
 imshow(kolo|lena,[]);
 title('or');
