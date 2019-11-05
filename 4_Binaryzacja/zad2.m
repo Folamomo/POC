@@ -2,9 +2,9 @@ clearvars;
 close all;
 clc;
 
-img = imread("rice.png");
+% img = imread("rice.png");
 
-%%img = imread("katalog.bmp");
+img = imread("katalog.bmp");
 
 figure();
 imshow(img);
