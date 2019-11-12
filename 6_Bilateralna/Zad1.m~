@@ -9,10 +9,14 @@ load('MR_data.mat');
 img0 = I_noisefree;
 img1 = I_noisy1;
 img2 = I_noisy2;
-img = I_noisy3;
+img3 = I_noisy3;
 img4 = I_noisy4;
 
-draw(image, 3);
+draw(img0, 0.1);
+draw(img1, 0.2);
+draw(img2, );
+draw(img3, 1);
+draw(img4, 2);
 
 %% Moja funkcja pomocnicza
 function draw(image, sigma)

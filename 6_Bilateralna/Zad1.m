@@ -12,11 +12,11 @@ img2 = I_noisy2;
 img3 = I_noisy3;
 img4 = I_noisy4;
 
-draw(img0, 3);
-draw(img1, 3);
-draw(img2, 3);
-draw(img3, 3);
-draw(img4, 3);
+draw(img0, 0.2);
+draw(img1, 0.1);
+draw(img2, 7);
+draw(img3, 0.1);
+draw(img4, 0.2);
 
 %% Moja funkcja pomocnicza
 function draw(image, sigma)
