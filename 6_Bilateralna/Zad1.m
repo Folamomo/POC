@@ -72,7 +72,7 @@ h = fspecial('gaussian',local_window,25);
         %obliczamy odleglosc w przeciwdziedzinie
         dist_anty = abs(window - window(Ncy,Ncx));
         %obliczamy gamma
-        gamma = (-1)*(dist_anty .* dist_anty)/(2*sigma*sigma);
+        gamma = exp((-1)*(dist_anty .* dist_anty)/(2*sigma*sigma));
         %obliczamy Wn
         Wn = sum(sum(psi .* gamma));
         
