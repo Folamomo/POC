@@ -61,5 +61,4 @@ imshow(lena_10med);
 subplot(1, 3, 3);
 imshow(imabsdiff(lena, lena_10med),[]);
 
-%%Ej robimy taki plakat z całą Lenną i na ścianę w 810?
 
