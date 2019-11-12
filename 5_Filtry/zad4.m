@@ -1,4 +1,6 @@
-close all; clearvars; clc;
+clearvars;
+close all;
+clc;
 %%
 
 img = imread("jet.bmp");
@@ -29,10 +31,15 @@ function show_1(img, mask, size, title_)
     img_after_mapping = conv2(img, mask, size);
     norm1 = img_after_mapping + 128;
     norm2 = abs(img_after_mapping);
-    
-    subplot(3, 2, 1:2), imshow(img);
-    subplot(3, 2, 3), imshow(norm1, []);
-    subplot(3, 2, 4), imshow(norm2, []);
-    subplot(3, 2, 5), imshow(uint8(double(img) + norm1));  
-    subplot(3, 2, 6), imshow(uint8(double(img) + norm2));  
+
+    subplot(3, 2, 1:2);
+    imshow(img);
+    subplot(3, 2, 3);
+    imshow(norm1, []);
+    subplot(3, 2, 4);
+    imshow(norm2, []);
+    subplot(3, 2, 5);
+    imshow(uint8(double(img) + norm1));
+    subplot(3, 2, 6);
+    imshow(uint8(double(img) + norm2));
 end
