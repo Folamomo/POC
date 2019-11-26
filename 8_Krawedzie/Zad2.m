@@ -39,7 +39,6 @@ theta1 = theta(163);
 x = 0:0.1:10;
 
 y = (rho1 - x*cosd(theta1)/sind(theta1));
-figure(3);
 imshow(image);
 truesize([300 200]);
 hold on;
