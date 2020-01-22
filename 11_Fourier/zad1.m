@@ -4,9 +4,9 @@ clc;
 
 %%
 
-%image = imread('dwieFale.bmp');
+image = imread('dwieFale.bmp');
 %image = imread('kolo.bmp');
-image = imread('kwadrat.bmp');
+%image = imread('kwadrat.bmp');
 %image = imread('kwadrat45.bmp');
 %image = imread('trojkat.bmp');
 

@@ -30,16 +30,16 @@ subplot(2,4,8); imshow(F2,[]); title ('faza');
 [f1, f2] = freqspace(512, 'mesgrid');
 Hd = ones (512);
 r = sqrt(f1.^2 + f2.^2);
-Hd(r > 0.1) = 0;
+Hd(r > 0.2) = 0;
 
 figure;
 colormap(jet(64)); mesh(f1,f2,Hd);
 
 %%
 
-filtredImage = image3.*Hd;
+filtredImage = image3.* Hd;
 
-figure
+figure;
 imshow(filtredImage);
 %%
 nImage = ifft2(ifftshift(filtredImage));
@@ -56,7 +56,7 @@ mesh(f1, f2, H);
 
 filtredImage = image3.*H;
 
-figure
+figure;
 imshow(filtredImage);
 %%
 nImage = ifft2(ifftshift(filtredImage));

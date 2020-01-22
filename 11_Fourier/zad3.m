@@ -11,11 +11,11 @@ Img_fftshift = fftshift(Img_fft2);
 
 A = abs(Img_fftshift);
 ampl = log10(A + 1);
-phase = angle(Img_fftshift.*(A>0.0001));
+phase = angle(Img_fftshift.*(A>0.01));
 
 figure(1);
 subplot(1, 4, 1);
-imshow(Img);
+imshow(Img, []);
 title('original');
 
 subplot(1, 4, 2);
@@ -32,8 +32,9 @@ title('phase');
 
 %%
 
-Img_fft2 = fft(Img);
+Img_fft2 = fftshift(fft(Img));
 Fft2abs = log10(abs(Img_fft2)+1);
+Img_fft2(Fft2abs < 0.01) = 0;
 Img_fft2(Fft2abs > 50) = 0;
 
 figure;
@@ -43,5 +44,5 @@ imshow(Img);
 title('original');
 
 subplot(1, 2, 2);
-imshow(uint8(ifft(ifftshift(Img_fft2))), []);
-title('filtrated');
+imshow(fftshift(ifft(Img_fft2)), []);
+title('filtered');
