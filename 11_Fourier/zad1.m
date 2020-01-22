@@ -4,51 +4,51 @@ clc;
 
 %%
 
-Img = imread('dwieFale.bmp');
+%image = imread('dwieFale.bmp');
+%image = imread('kolo.bmp');
+image = imread('kwadrat.bmp');
+%image = imread('kwadrat45.bmp');
+%image = imread('trojkat.bmp');
 
-Img_fft2 = fft2(Img);
-Img_fftshift = fftshift(Img_fft2);
 
-figure;
-subplot(1, 3, 1);
-imshow(Img);
-subplot(1, 3, 2);
-imshow(Img_fft2);
-subplot(1, 3, 3);
-imshow(Img_fftshift);
+image2 = fft2(image);
 
-A = abs(Img_fftshift);
-ampl = log10(A + 1);
-phase = angle(Img_fftshift.*(A>0.0001));
-
-figure;
-subplot(1, 3, 1);
-imshow(Img_fftshift);
-title('fftshift');
-
-subplot(1, 3, 2);
-imshow(ampl, []);
-title('amplitude');
-
-subplot(1, 3, 3);
-imshow(phase, []);
-title('phase');
 
 %%
 
-Img_fft2 = fft2(Img);
-Img_fftshift = fftshift(Img_fft2);
-
-ifImage = ifftshift(Img_fftshift);
-nImage = ifft2(ifImage);
+A = abs(image2);
+A = log10(A + 1);
+F = angle(image2.*(A>0.0001));
 
 figure;
-subplot(1, 3, 1);
-imshow(Img);
-title('before');
-subplot(1, 3, 2);
-imshow(uint8(nImage));
-title('after');
-subplot(1, 3, 3);
-imshow(imabsdiff(Img,uint8(nImage)),[]);
-title('diff');
+subplot(1,4,1); imshow(image); title('orginalny');
+subplot(1,4,2); imshow(image2); title('po fft1');
+subplot(1,4,3); imshow(A,[]); title ('amplituda');
+subplot(1,4,4); imshow(F,[]); title('faza');
+
+%%
+
+image3 = fftshift(image2);
+
+A2 = abs(image3);
+A2 = log10(A2 + 1);
+F2 = angle(image3.*(A2>0.0001));
+
+figure;
+subplot(2,4,1); imshow(image); title('orginalny');
+subplot(2,4,2); imshow(image2); title('po fft1');
+subplot(2,4,3); imshow(A,[]); title ('amplituda');
+subplot(2,4,4); imshow(F,[]); title('faza');
+subplot(2,4,6); imshow(image3); title('po fftshift');
+subplot(2,4,7); imshow(A2,[]); title('amplituda');
+subplot(2,4,8); imshow(F2,[]); title ('faza');
+
+
+%%
+pimage2 = ifftshift(image3);
+pimage = ifft2(pimage2);
+
+figure;
+subplot(1,2,1); imshow(pimage, []); title('odwrócony Fourier');
+subplot(1,2,2); imshow(image); title('orginal');
+

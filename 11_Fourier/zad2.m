@@ -3,72 +3,78 @@ close all;
 clc;
 
 %%
+image = imread('lena.bmp');
 
-Img = imread('lena.bmp');
+image2 = fft2(image);
 
-Img_fft2 = fft2(Img);
-Img_fftshift = fftshift(Img_fft2);
+A = abs(image2);
+A = log10(A + 1);
+F = angle(image2.*(A>0.0001));
 
-A = abs(Img_fftshift);
-ampl = log10(A + 1);
-phase = angle(Img_fftshift.*(A>0.0001));
+image3 = fftshift(image2);
 
-figure(1);
-subplot(1, 4, 1);
-imshow(Img);
-title('original');
+A2 = abs(image3);
+A2 = log10(A2 + 1);
+F2 = angle(image3.*(A2>0.0001));
 
-subplot(1, 4, 2);
-imshow(Img_fftshift);
-title('fftshift');
+figure;
+subplot(2,4,1); imshow(image); title('orginalny');
+subplot(2,4,2); imshow(image2); title('po fft2');
+subplot(2,4,3); imshow(A,[]); title ('amplituda');
+subplot(2,4,4); imshow(F,[]); title('faza');
+subplot(2,4,6); imshow(image3); title('po fftshift');
+subplot(2,4,7); imshow(A2,[]); title('amplituda');
+subplot(2,4,8); imshow(F2,[]); title ('faza');
 
-subplot(1, 4, 3);
-imshow(ampl, []);
-title('amplitude');
-
-subplot(1, 4, 4);
-imshow(phase, []);
-title('phase');
-
-%% 4
-[f1, f2] = freqspace(512, 'meshgrid');
-Hd = ones(512);
+%%
+[f1, f2] = freqspace(512, 'mesgrid');
+Hd = ones (512);
 r = sqrt(f1.^2 + f2.^2);
+Hd(r > 0.1) = 0;
 
-%Hd(r>0.1) = 0; % maska kola
-Hd((r<0.7)) = 0; % filtr górnoprzepustowy
+figure;
+colormap(jet(64)); mesh(f1,f2,Hd);
 
-figure(2);
-colormap(jet(64));
-mesh(f1, f2, Hd);
-title('filtr górnoprzepustowy');
+%%
 
-%% 5
-Img_filtered = Img_fftshift .* Hd;
-figure(3);
-imshow(ifft2(Img_filtered));
-title('przefiltrowany F-obraz');
+filtredImage = image3.*Hd;
 
-%% zad 7
+figure
+imshow(filtredImage);
+%%
+nImage = ifft2(ifftshift(filtredImage));
+
+figure;
+imshow(nImage, []);
+%%
 h = fwind1(Hd, hanning(21));
 [H, f1, f2] = freqz2(h, 512, 512);
-
-figure(4);
+figure;
 mesh(f1, f2, H);
-title('okno Hamminga');
 
-%% zad 9 - filtr Gaussa
-[X, Y] = size(Img);
-mask = fspecial('gaussian', X, 10);
-gray = mat2gray(mask);
-figure(5);
-imshow(gray);
-title('mask gray scale');
+%%
 
-F = fft2(Img);        % fourier
-F = fftshift(F);    % przesuniecie
-F = F .* mask;     % maska
-F = ifft2(F);       % odwrotny fourier
+filtredImage = image3.*H;
 
-figure(6);
-imshow(F);
+figure
+imshow(filtredImage);
+%%
+nImage = ifft2(ifftshift(filtredImage));
+
+figure;
+imshow(nImage, []);
+%%
+[width, height] = size(image);
+
+mask = fspecial('gaussian', height, 20);
+grayMask = mat2gray(mask);
+
+filtredImage = image3.*grayMask;
+
+figure;
+imshow(filtredImage);
+
+nImage = uint8(ifft2(ifftshift(filtredImage)));
+
+figure;
+imshow(nImage);
